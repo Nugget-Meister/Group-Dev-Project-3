@@ -1,0 +1,31 @@
+import React, {useState} from 'react';
+
+const ImageResults = () => {
+    const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Auguste Renoir')
+        .then(response => response.json())
+        .then(data => {
+            setImages(data.objectIDs);
+            setLoading(false);
+        })
+        .catch(error => console.error('Error:', error));
+        
+        return (
+            <div>
+                {loading ? (
+                    <div>Loading...</div>
+                )  :   (
+                    <div>
+                        <h1> Image Results</h1>
+                        <ul>
+                            {images.map(objectID => (
+                                <li key={objectID}>
+                                    <img src={''}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>    
+        )
+}
