@@ -14,18 +14,22 @@ const ImageResults = () => {
         
         return (
             <div>
-                {loading ? (
+                {/* {loading ? (
                     <div>Loading...</div>
                 )  :   (
                     <div>
                         <h1> Image Results</h1>
-                        <ul>
+                    <div>
+                    <ul>
+                    </ul>
                             {images.map(objectID => (
                                 <li key={objectID}>
-                                    <img src={''}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>    
-        )
-}
+                                    <img src={`https://metmuseum.github.io/object/${objectID}/images/primary.jpg`} alt={`Object ${objectID}`} />
+                            
+                    </li>
+                </div>
+      )}
+    </div> */}
+    </div>
+  );
+};
