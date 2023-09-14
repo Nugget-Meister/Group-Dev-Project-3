@@ -4,7 +4,7 @@ const ImageResults = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Auguste Renoir')
+    fetch('')
         .then(response => response.json())
         .then(data => {
             setImages(data.objectIDs);
