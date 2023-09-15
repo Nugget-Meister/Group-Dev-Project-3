@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 const ImageResults = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
