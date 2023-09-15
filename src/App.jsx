@@ -1,4 +1,6 @@
-import {BrowserRouter as Router, Route, Routes} from react-router-dom
+import {useState} from "react"
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+
 
 import Home from './components/Home/Home'
 import Favorites from './components/Favorites/Favorites'
@@ -12,16 +14,15 @@ function App() {
   return (
   
       <div className='wrapper'>
-        <Router>
-          <main>
-            <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/favorites' element={<Favorites/>}/>
-              <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
-              <Route path='/search/:query' element={<Home/>}/>
-
+         <Router>
+           <main>
+             <Routes>
+               <Route path='/' element={<Home/>}/>
+               <Route path='/favorites' element={<Favorites/>}/>
+               <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
+               <Route path='/search/:query' element={<Home/>}/>
             </Routes>
-          </main>
+           </main>
         </Router>
       </div>
     

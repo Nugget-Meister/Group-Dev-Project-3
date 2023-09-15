@@ -1,6 +1,6 @@
 import React from 'react';
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import reactLogo from '/src/assets/react.svg'
+import viteLogo from '/src/assets/vite.svg'
 
 
 const Home = () => {
