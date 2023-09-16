@@ -4,7 +4,7 @@ const ImageResult = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    fetch(${URL})
+    fetch('${URL}')
         .then(response => response.json())
         .then(data => {
             setImages(data.objectID);
