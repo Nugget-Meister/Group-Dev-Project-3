@@ -4,13 +4,16 @@ const ImageResult = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    fetch('${URL}')
-        .then(response => response.json())
-        .then(data => {
-            setImages(data.objectID);
-            setLoading(false);
+    useEffect(() => {
+        fetch(process.env.IMAGE_API_URL)
+            .then(response => response.json())
+            .then(data => {
+                setImages(data.objectIDs);
+                setLoading(false);
         })
-        .catch(error => console.error('Error:',error ));
+            .catch(error => console.error('Error:',error ));
+    }, []);
+    
     return (
         <div className='ImageResult'>
              {loading ? (
