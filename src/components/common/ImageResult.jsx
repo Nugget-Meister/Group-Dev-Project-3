@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
 
+
+const URL = import.meta.env.IMAGE_API_URL;
+
+
 const ImageResult = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    console.log(data.objectIDs)
+    // console.log(data.objectIDs)
     useEffect(() => {
-        fetch(process.env.IMAGE_API_URL)
+        fetch(URL)
             .then(response => response.json())
             .then(data => {
                 setImages(data.objectIDs);
