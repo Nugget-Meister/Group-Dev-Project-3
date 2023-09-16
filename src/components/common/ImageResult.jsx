@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const ImageResult = () => {
     const [images, setImages] = useState([]);
@@ -13,7 +13,7 @@ const ImageResult = () => {
         })
             .catch(error => console.error('Error:',error ));
     }, []);
-    
+
     return (
         <div className='ImageResult'>
              {loading ? (
