@@ -4,6 +4,7 @@ const ImageResult = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    console.log(data.objectIDs)
     useEffect(() => {
         fetch(process.env.IMAGE_API_URL)
             .then(response => response.json())
