@@ -20,7 +20,7 @@ const ImageResult = () => {
                 <div>Loading...</div>
               ) : (
                 <div>
-                  <h1>Image Results</h1>
+                  <h1>Image Result</h1>
                   <ul>
                     {images.map(objectID => (
                       <li key={objectID}>
