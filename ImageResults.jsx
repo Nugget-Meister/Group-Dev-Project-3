@@ -7,7 +7,7 @@ const ImageResults = () => {
     fetch('')
         .then(response => response.json())
         .then(data => {
-            setImages(data.objectIDs);
+            setImages(data.objectID);
             setLoading(false);
         })
         .catch(error => console.error('Error:', error));
