@@ -8,17 +8,20 @@ import Home from './components/Home/Home'
 import Favorites from './components/Favorites/Favorites'
 import ImageDetails from './components/ImageDetails/ImageDetails'
 import Results from './components/Results/Results'
-
+import NavBar from "./components/common/NavBar"
 import './App.css'
 
 function App() {
 
   const [searchResult, updateSearchResult] = useState([])
   const [savedFavorites, updateSavedFavorites] = useState({})
+  
+  
 
   return (
   
       <div className='wrapper'>
+        <NavBar />
          <Router>
            <main>
              <Routes>
