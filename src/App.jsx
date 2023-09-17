@@ -22,7 +22,9 @@ function App() {
          <Router>
            <main>
              <Routes>
-               <Route path='/' element={<Home/>}/>
+               <Route path='/' element={<Home
+                updateSearchResult={updateSearchResult}  
+               />}/>
                <Route path='/favorites' element=
                   {<Favorites 
                       savedFavorites={savedFavorites}

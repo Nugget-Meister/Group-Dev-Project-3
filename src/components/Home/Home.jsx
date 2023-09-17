@@ -6,11 +6,12 @@ import viteLogo from "/src/assets/vite.svg";
 
 import { departments } from "../common/departmentlist";
 import { searchRequest } from "../common/apicalls";
+import { useNavigate } from "react-router";
 
 
 const Home = ({updateSearchResult}) => {
 
-
+    
   const [query, setQuery] = useState({
       text: "",
       department1: '',
@@ -18,13 +19,19 @@ const Home = ({updateSearchResult}) => {
       department3: ''
   });
 
+  const navigate = useNavigate()
+
+
   // Handles the number of categories on screen
   const [categoryNum, setCategoryNum] = useState(1)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(query);
-    console.log(searchRequest(query))
+    const {text,department1,department2,department3} = {...query}
+    const concatLink = `${text}${department1?`~${department1}`:''}${department2?`~${department2}`:''}${department3?`~${department3}`:''}`
+    searchRequest(query)
+    .then(res => updateSearchResult(res))
+    .then(() => navigate(`/search/${concatLink}`))
   };
 
   const resetForm = () => {
