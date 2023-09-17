@@ -4,8 +4,9 @@ import './ImageResult.css'
 
 const URL = import.meta.env.VITE_API_URL;
 
-
-const ImageResult = () => {
+// ObjectIds is a prop for this component 
+// Request made per object 
+const ImageResult = ({objectIDs}) => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
