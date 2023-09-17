@@ -11,6 +11,9 @@ import './App.css'
 
 function App() {
 
+  const [searchResult, updateSearchResult] = useState([])
+  const [savedFavorites, updateSavedFavorites] = useState({})
+
   return (
   
       <div className='wrapper'>
@@ -19,9 +22,13 @@ function App() {
            <main>
              <Routes>
                <Route path='/' element={<Home/>}/>
-               <Route path='/favorites' element={<Favorites/>}/>
+               <Route path='/favorites' element=
+                  {<Favorites 
+                      savedFavorites={savedFavorites}
+                      updateSavedFavorites={updateSavedFavorites}
+                      />}/>
                <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
-               <Route path='/search/:query' element={<Home/>}/>
+               <Route path='/search/:query' element={<Results/>}/>
             </Routes>
            </main>
         </Router>

@@ -5,7 +5,7 @@ import viteLogo from "/src/assets/vite.svg";
 import { departments } from "../common/departmentlist";
 import { searchRequest } from "../common/apicalls";
 
-const Home = () => {
+const Home = ({updateSearchResult}) => {
 
 
   const [query, setQuery] = useState({
@@ -21,7 +21,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(query);
-    searchRequest(query)
+    console.log(searchRequest(query))
   };
 
   const resetForm = () => {
