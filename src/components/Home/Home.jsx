@@ -1,9 +1,12 @@
+
 import { useState } from "react";
 import reactLogo from "/src/assets/react.svg";
 import viteLogo from "/src/assets/vite.svg";
 
+
 import { departments } from "../common/departmentlist";
 import { searchRequest } from "../common/apicalls";
+
 
 const Home = ({updateSearchResult}) => {
 
@@ -123,5 +126,7 @@ const Home = ({updateSearchResult}) => {
     </div>
   );
 };
+
+
 
 export default Home;
