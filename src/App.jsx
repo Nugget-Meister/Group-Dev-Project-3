@@ -14,6 +14,7 @@ function App() {
   return (
   
       <div className='wrapper'>
+
          <Router>
            <main>
              <Routes>
