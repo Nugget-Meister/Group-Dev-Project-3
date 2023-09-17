@@ -20,7 +20,8 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(query);
+    // console.log(query);
+    searchRequest(query)
   };
 
   const resetForm = () => {
@@ -31,27 +32,32 @@ const Home = () => {
     setQuery({...query, [e.target.id]: e.target.value});
   };
 
+ 
+
   const handleCategories = (amount) => {
 
     const newCategory = (num) => {
         return (
-            <select required 
-                key={`department${num}`} 
-                id={`department${num}`}
-                value={query[`department${num}`]}
-                onChange={setChanged}
-                >
-                <option key={`0-${num}`} value="">-None-</option>
-                {
-                    departments.map((department) => {
-                        return (
-                            <option 
-                                value={department.departmentId}
-                                key={department.departmentId}
-                                >{department.displayName}</option>)
-                    }
-                 )}
-            </select>
+            <div key={`divdepartment${num}`} >
+                <select required 
+                    key={`department${num}`} 
+                    id={`department${num}`}
+                    value={query[`department${num}`]}
+                    onChange={setChanged}
+                    >
+                    <option key={`0-${num}`} value="">-None-</option>
+                    {
+                        departments.map((department) => {
+                            return (
+                                <option 
+                                    value={department.departmentId}
+                                    key={department.departmentId}
+                                    >{department.displayName}</option>)
+                        }
+                    )}
+                    
+                </select>
+            </div>
         );
       };
 
@@ -66,18 +72,33 @@ const Home = () => {
   }
 
 
-  // Creates singular new category, belongs to handleCate
-
-
+  const updateCategoryNum = (num) => {
+    setCategoryNum(num)
+    if (num == 2){
+        setQuery({...query,
+        department3: ''})
+    }
+    if (num == 1){
+        setQuery({...query, department2: '',
+        department3: ''})
+    }
+  }
 
   
   return (
     <div id="home">
       <form onSubmit={handleSubmit}>
-        <input type="text" id="text" value={query.text} onChange={setChanged} />
+        <input 
+            type="text" 
+            id="text" 
+            minLength="3"
+            value={query.text} 
+            onChange={setChanged} />
+        <br />
         {handleCategories(categoryNum)}
-        {categoryNum < 3 ? <button type="button" onClick={() => setCategoryNum(categoryNum+1)}>+</button>: null}
-        {categoryNum > 1 ? <button type="button" onClick={() => setCategoryNum(categoryNum-1)}>-</button>: null}
+        {categoryNum < 3 ? <button type="button" onClick={() => updateCategoryNum(categoryNum+1)}>+</button>: null}
+        {categoryNum > 1 ? <button type="button" onClick={() => updateCategoryNum(categoryNum-1)}>-</button>: null}
+        <br />
         <button type="submit">Search</button>
         <button type="reset" onClick={() => resetForm()}>Reset</button>
       </form>
