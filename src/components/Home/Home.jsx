@@ -9,8 +9,10 @@ const Home = () => {
 
 
   const [query, setQuery] = useState({
-    departmentId: null,
-    text: "",
+      text: "",
+      department1: '',
+      department2: '',
+      department3: ''
   });
 
   // Handles the number of categories on screen
@@ -18,22 +20,28 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.department.value, e.target.text.value);
+    console.log(query);
   };
 
   const resetForm = () => {
     setCategoryNum(1)
   }
   const setChanged = (e) => {
-    setQuery(e.target.value);
+    // console.log(e.target.value)
+    setQuery({...query, [e.target.id]: e.target.value});
   };
 
   const handleCategories = (amount) => {
 
     const newCategory = (num) => {
         return (
-            <select key={`department${num}`} id={`department${num}`}>
-                <option key={`0-${num}`} value="0">-None-</option>
+            <select required 
+                key={`department${num}`} 
+                id={`department${num}`}
+                value={query[`department${num}`]}
+                onChange={setChanged}
+                >
+                <option key={`0-${num}`} value="">-None-</option>
                 {
                     departments.map((department) => {
                         return (
@@ -49,7 +57,7 @@ const Home = () => {
 
 
     const categories = []
-    for (let i = 0; i < amount; i++) {
+    for (let i = 1; i <= amount; i++) {
         categories.push(newCategory(i))
     }
 
@@ -65,7 +73,7 @@ const Home = () => {
   
   return (
     <div id="home">
-      <form onSubmit={() => handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input type="text" id="text" value={query.text} onChange={setChanged} />
         {handleCategories(categoryNum)}
         {categoryNum < 3 ? <button type="button" onClick={() => setCategoryNum(categoryNum+1)}>+</button>: null}
