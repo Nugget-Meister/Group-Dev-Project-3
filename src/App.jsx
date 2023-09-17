@@ -31,8 +31,11 @@ function App() {
                       updateSavedFavorites={updateSavedFavorites}
                       />}/>
                <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
-               <Route path='/search/:query' element={<Results/>}/>
                <Route path='/imageresult' element={<ImageResult/>}/>
+               <Route path='/search/:query' element={<Results
+                  searchResult={searchResult}
+                />}/>
+
             </Routes>
            </main>
         </Router>
