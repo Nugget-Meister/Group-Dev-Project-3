@@ -1,0 +1,10 @@
+.about h2 {
+	text-align: center;
+}
+
+.fellows {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 25px;
+}
