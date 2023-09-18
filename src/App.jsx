@@ -8,7 +8,7 @@ import Home from './components/Home/Home'
 import Favorites from './components/Favorites/Favorites'
 import ImageDetails from './components/ImageDetails/ImageDetails'
 import Results from './components/Results/Results'
-import { AboutSpecificPerson } from './src/components/AboutSpecificPerson.jsx';
+// import { AboutSpecificPerson } from './src/components/AboutSpecificPerson.jsx';
 
 import About from './components/About';
 import NavBar from "./components/common/NavBar"
@@ -20,6 +20,7 @@ function App() {
 
   const [searchResult, updateSearchResult] = useState([])
   const [savedFavorites, updateSavedFavorites] = useState({})
+  const [cachedData, updateCachedData] = useState({})
   
   
 
@@ -40,12 +41,14 @@ function App() {
                       savedFavorites={savedFavorites}
                       updateSavedFavorites={updateSavedFavorites}
                       />}/>
-               <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
-               <Route path='/imageresult' element={<ImageResult/>}/>
                <Route path='/search/:query' element={<Results
                   searchResult={searchResult}
+                  savedFavorites={savedFavorites}
+                  updateSavedFavorites={updateSavedFavorites}
+                  cachedData={cachedData}
+                  updateCachedData={updateCachedData}
                 />}/>
-
+               <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
             </Routes>
            </main>
         </Router>

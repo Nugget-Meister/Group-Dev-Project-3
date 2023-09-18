@@ -1,8 +1,8 @@
 const API_URL = "https://collectionapi.metmuseum.org/public/collection/v1/search?q="
-// const API_URL_NO_SEARCH = "https://collectionapi.metmuseum.org/public/collection/v1/search?q=cat&departmentId="
+const API_URL_OBJECT = "https://collectionapi.metmuseum.org/public/collection/v1/objects/"
 
 const searchRequest = (query) => {
-    console.log(query)
+    // console.log(query)
 
     let promises = []
 
@@ -22,7 +22,14 @@ const searchRequest = (query) => {
 
 }
 
+const getObject = (objectID) => {
+    return fetch(`${API_URL_OBJECT}${objectID}`)
+    .then(res => res.json())
+
+}
+
 
 export {
-    searchRequest
+    searchRequest,
+    getObject
 }
