@@ -41,6 +41,7 @@ const ImageResult = ({objectID,URL}) => {
                           alt={`Object ${objectID}`}
                         />
                           </Link>
+                          <button onClick={handleFavorites}>Add to Favorites</button>
                       </li>
                   //   ))}
                   // </ul>
@@ -49,6 +50,5 @@ const ImageResult = ({objectID,URL}) => {
         // </div>
     );
 };
-// Add a link for the favorites
-// add a button to link to the image details
+// 
 export default ImageResult;
