@@ -12,6 +12,7 @@ import Results from './components/Results/Results'
 import About from './components/About';
 import NavBar from "./components/common/NavBar";
 
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

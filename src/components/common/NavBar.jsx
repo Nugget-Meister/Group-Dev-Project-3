@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
+import './NavBar.css';
+
+
+
 function NavBar() {
   const [NavBar, setNavBar] = useState(false);
 
@@ -9,18 +13,16 @@ function NavBar() {
 
 
     return (
-        <>
-        
+        <>  
         <nav className="navbar navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
                 <Link to="/" className="navbar-brand">
                     Metropolitan Museum of Art
-                </Link>
-                
+                </Link>             
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="offcanvas offcanvas-end text-bg-dark" tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div className="offcanvas offcanvas-end text-bg-danger" tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                     <div className="offcanvas-header">
                         <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
                         <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
