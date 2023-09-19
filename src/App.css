@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+main {
+  overflow: scroll;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

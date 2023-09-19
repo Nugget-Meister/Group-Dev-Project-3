@@ -42,7 +42,7 @@ function NavBar() {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item">
-                                <Link to="/About" className="nav-link active"><span data-bs-toggle="offcanvas">Your Favorites</span></Link> 
+                                <Link to="/Favorites" className="nav-link active"><span data-bs-toggle="offcanvas">Your Favorites</span></Link> 
                             </li>
                         </ul>
                     </div>
