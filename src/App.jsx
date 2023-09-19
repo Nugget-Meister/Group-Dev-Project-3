@@ -16,9 +16,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [searchResult, updateSearchResult] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-
   const handleFavorite = (photoId) => {
     const updatedFavorites = favorites.map((photo) =>
       photo.id === photoId ? { ...photo, favorite: !photo.favorite } : photo
