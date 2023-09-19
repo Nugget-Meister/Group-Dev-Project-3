@@ -73,7 +73,9 @@ const [loopNum, updateloopNum] = useState(0)
                             <ImageResult 
                                 objectID={object.objectID}
                                 name={object.title}
-                                URL={object.primaryImage || "/src/assets/noImg.jpeg"}
+                                URL={ 
+                                    // object.primaryImage || 
+                                    "/src/assets/noImg.jpeg"}
                                 updateSavedFavorites={updateSavedFavorites}
                                 savedFavorites={savedFavorites}
                                 handleFavorite={handleFavorite}
