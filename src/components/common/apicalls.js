@@ -6,7 +6,6 @@ const searchRequest = (query) => {
 
     let promises = []
 
-
     if(query.department1 != ''){
         promises.push(fetch(`${API_URL}${query.text}${query.department1}`).then(res => res.json(), []).then(json => json.objectIDs))
     }
@@ -22,14 +21,24 @@ const searchRequest = (query) => {
 
 }
 
-const getObject = (objectID) => {
-    return fetch(`${API_URL_OBJECT}${objectID}`)
-    .then(res => res.json())
+const getObjects = (objectIDs) => {
+
+    let promises = []
+
+    objectIDs.map((objectID) => {
+        promises.push(fetch(`${API_URL_OBJECT}${objectID}`).
+        then(res => {
+            return res.json()
+        }, []))
+    })
+
+    return Promise.all(promises)
+    
 
 }
 
 
 export {
     searchRequest,
-    getObject
+    getObjects
 }
