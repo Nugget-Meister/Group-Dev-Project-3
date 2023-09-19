@@ -9,9 +9,14 @@ function NavBar() {
 
 
     return (
+        <>
+        
         <nav className="navbar navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
-                <a className="navbar-brand" href="http://localhost:5173/">Metropolitan Museum of Art</a>
+                <Link to="/" className="navbar-brand">
+                    Metropolitan Museum of Art
+                </Link>
+                
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -23,27 +28,29 @@ function NavBar() {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="http://localhost:5173/About">About Us</a>
+                                <Link to="/About" className="nav-link active"><span data-bs-toggle="offcanvas">About Us</span></Link>
                             </li>
                         </ul>
                     </div>
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="http://localhost:5173/">New Search</a>
+                                <Link to="/search" className="nav-link active"><span data-bs-toggle="offcanvas">New Search</span></Link>                            
                             </li>
                         </ul>
                     </div>
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="http://localhost:5173/Favorites">Favorites</a>
+                                <Link to="/About" className="nav-link active"><span data-bs-toggle="offcanvas">Your Favorites</span></Link> 
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
+        </>
+        
     )
 }
 export default NavBar;
