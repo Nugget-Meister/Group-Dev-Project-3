@@ -9,12 +9,13 @@ const ImageResult = ({
         objectID,
         URL,
         handleFavorite,
+        savedFavorites,
         name
     }) => {
 
 
     return (
-        <Card>
+        <Card key={objectID}>
             <Link to={`/imagedetails/${objectID}`}>
                 <Card.Img 
                     variant='top' 
@@ -24,7 +25,7 @@ const ImageResult = ({
             </Link>
             <Card.Body>
                 <Card.Text>{name}</Card.Text>
-                <Button onClick={() => {handleFavorite(objectID)}}>Add to Favorites</Button>
+                <Button onClick={() => {handleFavorite(objectID)}}>{savedFavorites[objectID]? `Remove Favorite`: `Add Favorite`}</Button>
             </Card.Body>
         </Card>
 

@@ -30,9 +30,11 @@ const Home = ({updateSearchResult}) => {
     e.preventDefault();
     const {text,department1,department2,department3} = {...query}
     const concatLink = `${text}${department1?`~${department1}`:''}${department2?`~${department2}`:''}${department3?`~${department3}`:''}`
-    searchRequest(query)
-    .then(res => updateSearchResult(res))
-    .then(() => navigate(`/search/${concatLink}`))
+    // searchRequest(query)
+    // .then(res => updateSearchResult(res))
+    // .then(() => navigate(`/search/${concatLink}`))
+    navigate(`/search/${concatLink}`)
+    
   };
 
   const resetForm = () => {
