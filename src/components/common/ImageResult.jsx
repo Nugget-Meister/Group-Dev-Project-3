@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import './ImageResult.css'
+import {Link} from 'react-router-dom'
 
 
 const URL = import.meta.env.VITE_API_URL;
 
 // ObjectIds is a prop for this component 
 // Request made per object 
-const ImageResult = ({objectID,URL}) => {
+const ImageResult = ({objectID,URL,handleFavorite}) => {
     // //*const [images, setImages] = useState([]);
     // const [loading, setLoading] = useState(true);
 
@@ -34,10 +35,13 @@ const ImageResult = ({objectID,URL}) => {
         //             {images.map(objectID => (
                      <li key={objectID}>
                          <p> Image </p>
-                         <img
+                         <Link to={`/imagedetails/${objectID}`}>
+                         <img 
                          src={URL}
                           alt={`Object ${objectID}`}
                         />
+                          </Link>
+                          <button onClick={() => {handleFavorite()}}>Add to Favorites</button>
                       </li>
                   //   ))}
                   // </ul>
@@ -46,5 +50,5 @@ const ImageResult = ({objectID,URL}) => {
         // </div>
     );
 };
-
+// 
 export default ImageResult;
