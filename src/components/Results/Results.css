@@ -13,3 +13,19 @@
     width: 100%;
 
 }
+
+@media (max-width: 599px) {
+    .resultList{
+        display: grid;
+        grid-template-columns: 1fr;
+    
+    }
+}
+
+@media (min-width: 600px) {
+    .resultList{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    
+    }
+}
