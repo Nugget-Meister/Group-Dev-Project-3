@@ -66,13 +66,13 @@ const Results = ({
     return (
         <div className='Results'>
             {selected.length != 0 ? 
-            <>
+            <div className='resultList'>
                 {   selected.map((object) => {
                 return (
                     <>
-                        <h1>{object.objectID}</h1>
                         <ImageResult 
                             objectID={object.objectID}
+                            name={object.title}
                             URL={object.primaryImage || "/src/assets/noImg.jpeg"}
                         />
                     </>
@@ -85,7 +85,7 @@ const Results = ({
                     updateError(<div>Searching</div>)
                 }
                 }}>Next Set</button>
-            </>
+            </div>
             : errorMessage}
         </div>
     );
