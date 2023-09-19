@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import './ImageResult.css'
+import {Link} from 'react-router-dom'
 
 
 const URL = import.meta.env.VITE_API_URL;
@@ -34,10 +35,12 @@ const ImageResult = ({objectID,URL}) => {
         //             {images.map(objectID => (
                      <li key={objectID}>
                          <p> Image </p>
-                         <img
+                         <Link to={'/imagedetails/${objectID}'}>
+                         <img 
                          src={URL}
                           alt={`Object ${objectID}`}
                         />
+                          </Link>
                       </li>
                   //   ))}
                   // </ul>
@@ -46,5 +49,6 @@ const ImageResult = ({objectID,URL}) => {
         // </div>
     );
 };
-
+// Add a link for the favorites
+// add a button to link to the image details
 export default ImageResult;
