@@ -2,13 +2,6 @@ import React from 'react';
 
 const Favorites = (props) => {
 
-    // const handleFavorite = (photoId) => {
-    //     const updatedFavorites = props.favorites.map((photo) =>
-    //         photo.id === photoId ? { ...photo, favorite: !photo.favorite } : photo
-    //     );
-    //     props.handleFavorite(updatedFavorites);
-    // };
-
     return (
         <div className="App">
             <h1>Favorites</h1>
