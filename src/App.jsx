@@ -32,8 +32,8 @@ function App() {
   return (
   
       <div className='wrapper'>
+        <Router>
         <NavBar />
-         <Router>
            <main>
              <Routes>
                <Route path='/' element={<Home
