@@ -14,10 +14,10 @@ function NavBar() {
 
     return (
         <>  
-        <nav className="navbar navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-dark bg-danger fixed-top">
             <div className="container-fluid">
                 <Link to="/" className="navbar-brand">
-                    Metropolitan Museum of Art
+                    Museum Mate
                 </Link>             
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
