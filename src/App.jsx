@@ -3,20 +3,28 @@ import {useState} from "react"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import ImageResult from './components/common/ImageResult'
 
-
 import Home from './components/Home/Home'
 import Favorites from './components/Favorites/Favorites'
 import ImageDetails from './components/ImageDetails/ImageDetails'
 import Results from './components/Results/Results'
-// import { AboutSpecificPerson } from './src/components/AboutSpecificPerson.jsx';
+
 
 import About from './components/About';
-import NavBar from "./components/common/NavBar"
+import NavBar from "./components/common/NavBar";
 
-import './App.css'
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [searchResult, updateSearchResult] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
+  const handleFavorite = (photoId) => {
+    const updatedFavorites = favorites.map((photo) =>
+      photo.id === photoId ? { ...photo, favorite: !photo.favorite } : photo
+    );
+    setFavorites(updatedFavorites);
+  };
 
   const [searchResult, updateSearchResult] = useState([])
   const [savedFavorites, updateSavedFavorites] = useState({})
@@ -42,6 +50,7 @@ function App() {
                   {<Favorites 
                       savedFavorites={savedFavorites}
                       updateSavedFavorites={updateSavedFavorites}
+                      handleFavorite={handleFavorite}
                       />}/>
                <Route path='/search/:query' element={<Results
                   searchResult={searchResult}
@@ -57,6 +66,7 @@ function App() {
       </div>
     
   )
+
 }
 
 export default App;
