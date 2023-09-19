@@ -3,6 +3,7 @@ import ImageResult from '../common/ImageResult';
 import {Link} from 'react-router-dom'
 import { getObjects } from '../common/apicalls';
 import dummyinfo from '../common/dummyinfo';
+import '../Results/Results.css'
 
 const Results = ({
         searchResult, 
@@ -15,7 +16,7 @@ const Results = ({
     const [loopNum, updateloopNum] = useState(0)
     const [errorMessage, updateError] = useState(<div>Searching</div>)
 
-        console.log(dummyinfo)
+        // console.log(dummyinfo)
 
     setTimeout(()=> {
         if(selected.length < 1) {
@@ -25,13 +26,8 @@ const Results = ({
                     <h2>Please return <Link to="/">home</Link> and try again.</h2>
                 </div>
                 )
-
         }
     }, 3000)    
-
-    const changePage = () => {
-        updateSelected([])
-    }
 
     // useEffect (() => {
     //     setTimeout(() => {
@@ -63,23 +59,28 @@ const Results = ({
     
 
     return (
-        <div className='Results'>
+        <div className='Results' key="results">
             {selected.length != 0 ? 
-            <div className='resultList'>
-                {   selected.map((object) => {
+            <div className='resultList' key='resultList'>
+                {selected.map((object) => {
                 return (
-                    <>
                         <ImageResult 
+                            key={object.objectID}
                             objectID={object.objectID}
                             name={object.title}
-                            URL={object.primaryImage || "/src/assets/noImg.jpeg"}
-                            savedFavorites={savedFavorites}
+                            URL={
+                                // object.primaryImage || 
+                                "/src/assets/noImg.jpeg"}
                             updateSavedFavorites={updateSavedFavorites}
+                            savedFavorites={savedFavorites}
                             handleFavorite={handleFavorite}
                         />
-                    </>
                 )
             })}
+            
+            </div>
+            : errorMessage}
+            {selected.length != 0 ?
             <button onClick={()=> {
                 updateSelected([])
                 if(loopNum >= searchResult.length){
@@ -87,8 +88,7 @@ const Results = ({
                     updateError(<div>Searching</div>)
                 }
                 }}>Next Set</button>
-            </div>
-            : errorMessage}
+                 : ''}
         </div>
     );
 }

@@ -1,5 +1,5 @@
 
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import ImageResult from './components/common/ImageResult'
 
@@ -17,16 +17,26 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const handleFavorite = (photoId) => {
-    const updatedFavorites = favorites.map((photo) =>
-      photo.id === photoId ? { ...photo, favorite: !photo.favorite } : photo
-    );
-    setFavorites(updatedFavorites);
-  };
 
   const [searchResult, updateSearchResult] = useState([])
   const [savedFavorites, updateSavedFavorites] = useState({})
-  const [cachedData, updateCachedData] = useState({})  
+  
+  const handleFavorite = (id) => {
+    console.log("favorites:",savedFavorites.id)
+    if(savedFavorites[id]){
+      console.log("toggle")
+      updateSavedFavorites({...savedFavorites, [id]: !savedFavorites[id]})
+    } 
+    else {
+      console.log("add")
+      updateSavedFavorites({...savedFavorites, [id]: true})
+    }
+  };
+
+  // useEffect(()=> {
+  //   console.log(savedFavorites,)
+  // }, [savedFavorites])
+
 
   return (
   
@@ -51,9 +61,8 @@ function App() {
                <Route path='/search/:query' element={<Results
                   searchResult={searchResult}
                   savedFavorites={savedFavorites}
+                  handleFavorite={handleFavorite}
                   updateSavedFavorites={updateSavedFavorites}
-                  cachedData={cachedData}
-                  updateCachedData={updateCachedData}
                 />}/>
                <Route path='/imagedetails/:id' element={<ImageDetails/>}/>
             </Routes>

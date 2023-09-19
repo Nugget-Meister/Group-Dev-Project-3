@@ -1,0 +1,15 @@
+
+.Results {
+    display:grid;
+}
+.resultList{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.card {
+    display: grid;
+    width: 100%;
+
+}
