@@ -2,17 +2,17 @@ import React from 'react';
 
 const Favorites = (props) => {
 
-    const handleFavorite = (photoId) => {
-        const updatedFavorites = props.favorites.map((photo) =>
-            photo.id === photoId ? { ...photo, favorite: !photo.favorite } : photo
-        );
-        props.handleFavorite(updatedFavorites);
-    };
+    // const handleFavorite = (photoId) => {
+    //     const updatedFavorites = props.favorites.map((photo) =>
+    //         photo.id === photoId ? { ...photo, favorite: !photo.favorite } : photo
+    //     );
+    //     props.handleFavorite(updatedFavorites);
+    // };
 
     return (
         <div className="App">
             <h1>Favorites</h1>
-            <ul>
+            {/* <ul>
                 {props.favorites.map((photo) => (
                     <li key={photo.id}>
                         <img src={photo.src} alt={`Photo ${photo.id}`} />
@@ -21,7 +21,7 @@ const Favorites = (props) => {
                         </button>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
     );
 };
