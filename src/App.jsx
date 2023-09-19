@@ -26,9 +26,7 @@ function App() {
 
   const [searchResult, updateSearchResult] = useState([])
   const [savedFavorites, updateSavedFavorites] = useState({})
-  const [cachedData, updateCachedData] = useState({})
-  
-  
+  const [cachedData, updateCachedData] = useState({})  
 
   return (
   
@@ -41,7 +39,7 @@ function App() {
                 updateSearchResult={updateSearchResult}  
                />}/>
                <Route path='/search' element={<Home
-                updateSearchResult={updateSearchResult}  
+                  updateSearchResult={updateSearchResult}
                />}/>
                <Route path='/about' element={<About />} />
                <Route path='/favorites' element=

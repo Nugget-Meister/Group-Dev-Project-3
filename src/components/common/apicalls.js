@@ -21,19 +21,31 @@ const searchRequest = (query) => {
 
 }
 
-const getObjects = (objectIDs) => {
+const getObjects = (objectID) => {
 
-    let promises = []
+    // let promises = []
 
-    objectIDs.map((objectID) => {
-        promises.push(fetch(`${API_URL_OBJECT}${objectID}`).
-        then(res => {
-            return res.json()
-        }, []))
-    })
+    if(objectID){
+        return fetch(`${API_URL_OBJECT}${objectID}`)
+    .then(res => {
+        return res.json()
+    }, [])
+    .catch(err => console.error(error))
+    } else {
+        console.error("An Object ID was not provided")
+    }
 
-    return Promise.all(promises)
     
+
+    // objectIDs.map((objectID) => {
+    //     promises.push(fetch(`${API_URL_OBJECT}${objectID}`).
+    //     then(res => {
+    //         return res.json()
+    //     }, []))
+    // })
+
+    // return Promise.all(promises)
+
 
 }
 

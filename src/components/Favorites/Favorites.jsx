@@ -2,12 +2,10 @@ import React from 'react';
 
 const Favorites = (props) => {
 
-   
-
     return (
         <div className="App">
             <h1>Favorites</h1>
-            <ul>
+            {/* <ul>
                 {props.favorites.map((photo) => (
                     <li key={photo.id}>
                         <img src={photo.src} alt={`Photo ${photo.id}`} />
@@ -16,7 +14,7 @@ const Favorites = (props) => {
                         </button>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
     );
 };

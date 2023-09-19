@@ -2,6 +2,8 @@ Museum Mate is a mobile applicaiton designed to assist visitors in navigating th
 
 Museum Mate's Staff
 
+[URL](https://strong-scone-f8ce93.netlify.app/)
+
 Davon Bridgett 
 Keith Camacho
 Kanique Cox 
