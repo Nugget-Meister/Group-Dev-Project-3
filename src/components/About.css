@@ -8,3 +8,13 @@
 	grid-template-columns: repeat(3, 1fr);
 	gap: 25px;
 }
+
+@media(max-width: 768px){
+	
+    .title{
+      text-align: left;
+    }
+    .directions{
+      display: none;
+    }
+  }

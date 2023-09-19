@@ -7,8 +7,10 @@ import ImageDetails from './components/ImageDetails/ImageDetails';
 import Results from './components/Results/Results';
 import About from './components/About';
 import NavBar from "./components/common/NavBar";
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
+
 function App() {
   const [searchResult, updateSearchResult] = useState([]);
   const [favorites, setFavorites] = useState([]);

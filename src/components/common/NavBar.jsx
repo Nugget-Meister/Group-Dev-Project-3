@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
+import './NavBar.css';
+
+
+
 function NavBar() {
   const [NavBar, setNavBar] = useState(false);
 
@@ -9,7 +13,7 @@ function NavBar() {
 
 
     return (
-        <nav className="navbar navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-dark bg-danger fixed-top">
             <div className="container-fluid">
                 <a className="navbar-brand" href="http://localhost:5173/">Metropolitan Museum of Art</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
