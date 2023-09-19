@@ -15,7 +15,7 @@ const Results = ({
     const [page, updatePage] = useState(1)
     const [selected, updateSelected] = useState([])
     const [loopNum, updateloopNum] = useState(0)
-    const [errorMessage, updateError] = useState(<div>Bonk</div>)
+    const [errorMessage, updateError] = useState(<div>Searching</div>)
     // const params = useParams()
 
 
@@ -43,9 +43,9 @@ const Results = ({
                     console.log(`${selected.length}/4 slots used`)
                     getObjects(searchResult[loopNum])
                     .then(result => {
-                        console.log(result, !!result.primaryImage)
+                        // console.log(result, !!result.primaryImage)
                         if(!!result.primaryImage){
-                            updateSelected([...selected, result], "Image found")
+                            updateSelected([...selected, result])
                         } else {
                             console.log("Image not found, trying ",searchResult[loopNum])
                         }
@@ -60,7 +60,7 @@ const Results = ({
             
 
         }, 1000)
-    } ,[selected])
+    } ,[loopNum])
 
 
     return (
@@ -82,6 +82,7 @@ const Results = ({
                 updateSelected([])
                 if(loopNum >= searchResult.length){
                     updateloopNum(0)
+                    updateError(<div>Searching</div>)
                 }
                 }}>Next Set</button>
             </>
