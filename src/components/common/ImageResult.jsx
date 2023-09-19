@@ -2,11 +2,9 @@ import React, {useState, useEffect, useReducer} from 'react';
 import './ImageResult.css'
 import {Link} from 'react-router-dom'
 
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
-const URL = import.meta.env.VITE_API_URL;
-
-// ObjectIds is a prop for this component 
-// Request made per object 
 const ImageResult = ({
         objectID,
         URL,
@@ -16,17 +14,30 @@ const ImageResult = ({
 
 
     return (
+        <Card>
+            <Link to={`/imagedetails/${objectID}`}>
+                <Card.Img 
+                    variant='top' 
+                    src={URL || '/src/assets/noImg.jpeg'}
+                    alt={`Object ${objectID}`}
+                />
+            </Link>
+            <Card.Body>
+                <Card.Text>{name}</Card.Text>
+                <Button onClick={() => {handleFavorite(objectID)}}>Add to Favorites</Button>
+            </Card.Body>
+        </Card>
 
-                    <div className='ImageResult'>
-                        <h3>{name}</h3>
-                        <Link to={`/imagedetails/${objectID}`}>
-                            <img 
-                            src={URL}
-                            alt={`Object ${objectID}`}
-                            />
-                        </Link><br/>
-                        <button onClick={() => {handleFavorite()}}>Add to Favorites</button>
-                    </div>
+                    // <div className='ImageResult card' style={{width: '18rem'}}>
+                    //     <h3>{name}</h3>
+                    //     <Link to={`/imagedetails/${objectID}`}>
+                    //         <img 
+                    //         src={URL || '/src/assets/noImg.jpeg'}
+                    //         alt={`Object ${objectID}`}
+                    //         />
+                    //     </Link><br/>
+                    //     <button onClick={() => {handleFavorite(objectID)}}>Add to Favorites</button>
+                    // </div>
 
     );
 };
