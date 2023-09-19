@@ -7,7 +7,7 @@ const URL = import.meta.env.VITE_API_URL;
 
 // ObjectIds is a prop for this component 
 // Request made per object 
-const ImageResult = ({objectID,URL}) => {
+const ImageResult = ({objectID,URL,handleFavorite}) => {
     // //*const [images, setImages] = useState([]);
     // const [loading, setLoading] = useState(true);
 
@@ -35,13 +35,13 @@ const ImageResult = ({objectID,URL}) => {
         //             {images.map(objectID => (
                      <li key={objectID}>
                          <p> Image </p>
-                         <Link to={'/imagedetails/${objectID}'}>
+                         <Link to={`/imagedetails/${objectID}`}>
                          <img 
                          src={URL}
                           alt={`Object ${objectID}`}
                         />
                           </Link>
-                          <button onClick={handleFavorites}>Add to Favorites</button>
+                          <button onClick={() => {handleFavorite()}}>Add to Favorites</button>
                       </li>
                   //   ))}
                   // </ul>
