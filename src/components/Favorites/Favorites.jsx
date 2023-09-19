@@ -4,8 +4,10 @@ import {Link} from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { getObjects } from '../common/apicalls';
 import ImageResult from '../common/ImageResult';
+import '../Favorites/Favorites.css'
 
 import dummyinfo from '../common/dummyinfo';
+
 
 const Favorites = ({
     savedFavorites,
