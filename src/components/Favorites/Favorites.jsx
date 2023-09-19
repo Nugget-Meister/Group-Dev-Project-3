@@ -32,7 +32,8 @@ const [loopNum, updateloopNum] = useState(0)
                     let find = dummyinfo.dummy.filter(object => {
                         return String(object.objectID) == thisID
                     })
-                    updateSelected(...selected, find)
+                    updateSelected([...selected, ...find])
+                    updateloopNum(loopNum+1)
 
                     // getObjects(favoritesList[loopNum])
                     // .then(result => {
