@@ -1,11 +1,10 @@
 const API_URL = "https://collectionapi.metmuseum.org/public/collection/v1/search?q="
-// const API_URL_NO_SEARCH = "https://collectionapi.metmuseum.org/public/collection/v1/search?q=cat&departmentId="
+const API_URL_OBJECT = "https://collectionapi.metmuseum.org/public/collection/v1/objects/"
 
 const searchRequest = (query) => {
-    console.log(query)
+    // console.log(query)
 
     let promises = []
-
 
     if(query.department1 != ''){
         promises.push(fetch(`${API_URL}${query.text}${query.department1}`).then(res => res.json(), []).then(json => json.objectIDs))
@@ -22,7 +21,24 @@ const searchRequest = (query) => {
 
 }
 
+const getObjects = (objectIDs) => {
+
+    let promises = []
+
+    objectIDs.map((objectID) => {
+        promises.push(fetch(`${API_URL_OBJECT}${objectID}`).
+        then(res => {
+            return res.json()
+        }, []))
+    })
+
+    return Promise.all(promises)
+    
+
+}
+
 
 export {
-    searchRequest
+    searchRequest,
+    getObjects
 }
