@@ -5,8 +5,9 @@
   text-align: center;
 }
 
-main {
-  overflow: scroll;
+.Results {
+  overflow: auto;
+  
 }
 
 .logo {
