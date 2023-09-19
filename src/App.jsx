@@ -34,7 +34,9 @@ function App() {
                <Route path='/' element={<Home
                 updateSearchResult={updateSearchResult}  
                />}/>
-
+               <Route path='/search' element={<Home
+                updateSearchResult={updateSearchResult}  
+               />}/>
                <Route path='/about' element={<About />} />
                <Route path='/favorites' element=
                   {<Favorites 
