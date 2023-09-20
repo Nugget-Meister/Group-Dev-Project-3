@@ -14,47 +14,48 @@ const Favorites = ({
     handleFavorite,
     updateSavedFavorites
 }) => {
-const [favoritesList, updateFavoritesList] = useState(Object.keys(savedFavorites).filter((key) => savedFavorites[key]))
+// const [favoritesList, updateFavoritesList] = useState(Object.keys(savedFavorites).filter((key) => savedFavorites[key]))
 const [selected, updateSelected] = useState([])
 const [loopNum, updateloopNum] = useState(0)
 
 
-    console.log(dummyinfo,savedFavorites)
+// console.log(savedFavorites)
 
-    useEffect (() => {
-        setTimeout(() => {
+    // useEffect (() => {
+    //     setTimeout(() => {
 
-            if(favoritesList.length > 0) {
-                let thisID = favoritesList[loopNum]
-                if(favoritesList.length < 4 && loopNum < favoritesList.length){
-                    // console.log(`Searching: ${thisID}. ${loopNum}/${favoritesList.length}`,)
-                    // console.log(`${selected.length}/4 slots used`)
-                    let find = dummyinfo.dummy.filter(object => {
-                        return String(object.objectID) == thisID
-                    })
-                    updateSelected([...selected, ...find])
-                    updateloopNum(loopNum+1)
+    //         if(favoritesList.length > 0) {
+    //             let thisID = favoritesList[loopNum]
+    //             if(favoritesList.length < 4 && loopNum < favoritesList.length){
+    //                 // console.log(`Searching: ${thisID}. ${loopNum}/${favoritesList.length}`,)
+    //                 // console.log(`${selected.length}/4 slots used`)
+    //                 let find = dummyinfo.dummy.filter(object => {
+    //                     return String(object.objectID) == thisID
+    //                 })
+    //                 updateSelected([...selected, ...find])
+    //                 updateloopNum(loopNum+1)
 
-                    // getObjects(favoritesList[loopNum])
-                    // .then(result => {
-                    //     // console.log(result, !!result.primaryImage)
-                    //     if(!!result.primaryImage){
-                    //         updateSelected([...selected, result])
-                    //     } else {
-                    //         console.log("Image not found, trying ",favoritesList[loopNum])
-                    //     }
-                    //     updateloopNum(loopNum+1)
-                    // })
-                    // .catch(error =>{
-                    //     console.log(error)
-                    //     updateloopNum(loopNum+1)
-                    // })
-                }
-            }
+    //                 // getObjects(favoritesList[loopNum])
+    //                 // .then(result => {
+    //                 //     // console.log(result, !!result.primaryImage)
+    //                 //     if(!!result.primaryImage){
+    //                 //         updateSelected([...selected, result])
+    //                 //     } else {
+    //                 //         console.log("Image not found, trying ",favoritesList[loopNum])
+    //                 //     }
+    //                 //     updateloopNum(loopNum+1)
+    //                 // })
+    //                 // .catch(error =>{
+    //                 //     console.log(error)
+    //                 //     updateloopNum(loopNum+1)
+    //                 // })
+    //             }
+    //         }
             
 
-        }, 1000)
-    } ,[loopNum])
+    //     }, 1000)
+    // } ,[loopNum])
+
 
     const message = (
         <div className='message'>
@@ -63,23 +64,54 @@ const [loopNum, updateloopNum] = useState(0)
         </div>
         )
 
-        console.log(selected)
+        // console.log(selected, savedFavorites)
+
+        useEffect(()=> {
+            console.log("firing",savedFavorites)
+
+            let found = Object.keys(savedFavorites).filter((key) => {
+               return savedFavorites[key] != false
+            })
+
+
+            console.log(savedFavorites)
+            
+            found = found.map((key) => {
+                    return savedFavorites[key]
+                })
+                
+            console.log(found)
+
+
+            if (found.length > 0 ) {     
+                updateSelected(
+                    found.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
+                )
+            }
+        },[loopNum])
 
     return (
         <div className="Favorites">
             <div className="resultList">
                 {selected.length > 0 ? selected.map((object) => {
+                    let imageURL = `https://www.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
+                    // console.log(imageURL)
                     return (
-                            <ImageResult 
-                                objectID={object.objectID}
-                                name={object.title}
-                                URL={object.primaryImage || "/src/assets/noImg.jpeg"}
-                                updateSavedFavorites={updateSavedFavorites}
-                                savedFavorites={savedFavorites}
-                                handleFavorite={handleFavorite}
-                            />
+                        <ImageResult 
+                            key={object.id}
+                            objectID={object.id}
+                            name={object.title}
+                            URL={
+                                imageURL || 
+                                "/src/assets/noImg.jpeg"}
+                            updateSavedFavorites={updateSavedFavorites}
+                            savedFavorites={savedFavorites}
+                            handleFavorite={handleFavorite}
+                            object={object}
+                        />
                     )
                 }) : message}
+            
             </div>
         </div>
     );

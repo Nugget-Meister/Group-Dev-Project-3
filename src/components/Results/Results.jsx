@@ -12,14 +12,19 @@ const Results = ({
         updateSavedFavorites,
         handleFavorite
     }) => {
-        searchResult = dataSample.slice()
+       
 
-        const [loopNum, updateloopNum] = useState(0)
-        const [errorMessage, updateError] = useState(<div>Searching</div>)
-        
-        const [selected, updateSelected] = useState(
-            searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
-        )
+
+    // Toggle dummy data here   
+    // searchResult = dataSample
+
+
+    const [loopNum, updateloopNum] = useState(0)
+    const [errorMessage, updateError] = useState(<div>Searching</div>)
+    
+    const [selected, updateSelected] = useState(
+        searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
+    )
 
 useEffect(()=> {
     setTimeout(()=> {

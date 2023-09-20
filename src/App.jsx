@@ -22,15 +22,15 @@ function App() {
   const [savedFavorites, updateSavedFavorites] = useState({})
   
   const handleFavorite = (object) => {
-    console.log("favorites:",savedFavorites[object.id])
+    // console.log("favorites:",savedFavorites[object.id])
     // console.log(object.id)
 
     if(savedFavorites[object.id] == object){
-      console.log("toggle")
+      // console.log("toggle")
       updateSavedFavorites({...savedFavorites, [object.id]: false})
     } 
     else {
-      console.log("add")
+      // console.log("add")
       updateSavedFavorites({...savedFavorites, [object.id]: object})
     }    
   
