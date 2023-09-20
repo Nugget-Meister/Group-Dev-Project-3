@@ -4,23 +4,24 @@ import reactLogo from "/src/assets/react.svg";
 import viteLogo from "/src/assets/vite.svg";
 
 
-import { departments } from "../common/departmentlist";
 import { searchRequest } from "../common/apicalls";
 import { useNavigate } from "react-router";
 import {Link} from "react-router-dom"
 
+import { departments } from "../common/departmentlist";
+import { chicagoMuseumDepartments } from "../common/chicagoMuseum/departmentlist";
 
 const Home = ({updateSearchResult}) => {
 
+    const navigate = useNavigate()
     
-  const [query, setQuery] = useState({
-      text: "",
-      department1: '',
-      department2: '',
-      department3: ''
-  });
+    const [query, setQuery] = useState({
+        text: "",
+        department1: '',
+        department2: '',
+        department3: ''
+    });
 
-  const navigate = useNavigate()
 
 
   // Handles the number of categories on screen
@@ -87,7 +88,6 @@ const Home = ({updateSearchResult}) => {
 
   }
 
-
   const updateCategoryNum = (num) => {
     setCategoryNum(num)
     if (num == 2){
@@ -100,6 +100,49 @@ const Home = ({updateSearchResult}) => {
     }
   }
 
+
+const handleCategories_Chicago = (amount) => {
+
+    const newCategory = (num) => {
+        return (
+            <div key={`divdepartment${num}`} >
+                <select required 
+                    key={`department${num}`} 
+                    id={`department${num}`}
+                    value={query[`department${num}`]}
+                    onChange={setChanged}
+                    >
+                    <option key={`0-${num}`} value="">-None-</option>
+                    {
+                        chicagoMuseumDepartments.data.map((department) => {
+                            return (
+                                <option 
+                                    value={department.id}
+                                    key={department.tId}
+                                    >{department.title}</option>)
+                        })
+                    }
+                    
+                </select>
+            </div>
+        );
+      };
+
+
+    const categories = []
+    for (let i = 1; i <= amount; i++) {
+        categories.push(newCategory(i))
+    }
+
+    return categories
+
+}
+
+
+
+
+
+
   
   return (
     <div id="home">
@@ -111,7 +154,7 @@ const Home = ({updateSearchResult}) => {
             value={query.text} 
             onChange={setChanged} />
         <br />
-        {handleCategories(categoryNum)}
+        {handleCategories_Chicago(categoryNum)}
         {categoryNum < 3 ? <button type="button" onClick={() => updateCategoryNum(categoryNum+1)}>+</button>: null}
         {categoryNum > 1 ? <button type="button" onClick={() => updateCategoryNum(categoryNum-1)}>-</button>: null}
         <br />
