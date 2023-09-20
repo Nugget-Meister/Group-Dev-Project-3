@@ -68,11 +68,10 @@ const searchRequest_Chicago = ({text, department1, department2, department3}) =>
         promises.push(fetch(buildURL(text, department1)).then(res => res.json(), []).then(json => json.data))
     }
     if(department2 != ''){
-        console.log(department2)
-    //     promises.push(fetch(`${API_URL}${query.text}${query.department2}`).then(res => res.json(), []).then(json => json.objectIDs))
+        promises.push(fetch(buildURL(text, department2)).then(res => res.json(), []).then(json => json.data))
     }
     if(department3 != ''){
-    //     promises.push(fetch(`${API_URL}${query.text}${query.department3}`).then(res => res.json(), []).then(json => json.objectIDs))
+        promises.push(fetch(buildURL(text, department3)).then(res => res.json(), []).then(json => json.data))
     }
 
    return Promise.all(promises)

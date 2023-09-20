@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ImageResult from '../common/ImageResult';
 import {Link} from 'react-router-dom'
 import { getObjects } from '../common/apicalls';
-import dummyinfo from '../common/dummyinfo';
+import { dataSample } from '../common/chicagoMuseum/dummyResponse';
+
 import '../Results/Results.css'
 
 const Results = ({
@@ -12,14 +13,15 @@ const Results = ({
         handleFavorite
     }) => {
 
-    const [selected, updateSelected] = useState([...dummyinfo.dummy])
+    // const [selected, updateSelected] = useState([])
     const [loopNum, updateloopNum] = useState(0)
     const [errorMessage, updateError] = useState(<div>Searching</div>)
 
-        // console.log(dummyinfo)
+    searchResult = dataSample
 
+useEffect(()=> {
     setTimeout(()=> {
-        if(selected.length < 1) {
+        if(searchResult.length < 1) {
             updateError(
                 <div className='error'>
                     <h1>An error has occured.</h1>
@@ -28,6 +30,8 @@ const Results = ({
                 )
         }
     }, 3000)    
+},[])
+    
 
     // useEffect (() => {
     //     setTimeout(() => {
@@ -51,8 +55,6 @@ const Results = ({
     //                 })
     //             }
     //         }
-            
-
     //     }, 1000)
     // } ,[loopNum])
 
@@ -60,27 +62,29 @@ const Results = ({
 
     return (
         <div className='Results' key="results">
-            {selected.length != 0 ? 
+            {searchResult.length != 0 ? 
             <div className='resultList' key='resultList'>
-                {selected.map((object) => {
-                return (
-                        <ImageResult 
-                            key={object.objectID}
-                            objectID={object.objectID}
-                            name={object.title}
-                            URL={
-                                // object.primaryImage || 
-                                "/src/assets/noImg.jpeg"}
-                            updateSavedFavorites={updateSavedFavorites}
-                            savedFavorites={savedFavorites}
-                            handleFavorite={handleFavorite}
-                        />
-                )
-            })}
-            
+                {
+                    searchResult.map((object) => {
+                        return (
+                            <ImageResult 
+                                key={object.objectID}
+                                objectID={object.objectID}
+                                name={object.title}
+                                URL={
+                                    // object.primaryImage || 
+                                    "/src/assets/noImg.jpeg"}
+                                updateSavedFavorites={updateSavedFavorites}
+                                savedFavorites={savedFavorites}
+                                handleFavorite={handleFavorite}
+                            />
+                        )
+                    })
+                }
+                
             </div>
             : errorMessage}
-            {selected.length != 0 ?
+            {/* {selected.length != 0 ?
             <button onClick={()=> {
                 updateSelected([])
                 if(loopNum >= searchResult.length){
@@ -88,7 +92,7 @@ const Results = ({
                     updateError(<div>Searching</div>)
                 }
                 }}>Next Set</button>
-                 : ''}
+                 : ''} */}
         </div>
     );
 }
