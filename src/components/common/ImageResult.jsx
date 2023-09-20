@@ -14,17 +14,17 @@ const ImageResult = ({
         object
     }) => {
 
-
+    
     return (
         <Card key={objectID}>
-            <Link to={`/imagedetails/${objectID}`}>
+            {/* <Link to={{pathname:`/imagedetails/${objectID}`, state:{object}}} > */}
                 <Card.Img 
                     variant='top' 
                     src={URL || '/src/assets/noImg.jpeg'}
                     alt={`Object ${objectID}`}
                     onError={(e) => console.log(e.target.src="/src/assets/noImg.jpeg")}
                 />
-            </Link>
+            {/* </Link> */}
             <Card.Body>
                 <Card.Text>{name}</Card.Text>
                 <Button onClick={() => {handleFavorite(object)}}>{savedFavorites[objectID]? `Remove Favorite`: `Add Favorite`}</Button>

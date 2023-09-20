@@ -16,7 +16,7 @@ const Results = ({
 
 
     // Toggle dummy data here   
-    // searchResult = dataSample
+    searchResult = dataSample
 
 
     const [loopNum, updateloopNum] = useState(0)
