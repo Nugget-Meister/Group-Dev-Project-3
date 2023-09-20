@@ -17,7 +17,7 @@ const Results = ({
     const [loopNum, updateloopNum] = useState(0)
     const [errorMessage, updateError] = useState(<div>Searching</div>)
 
-    searchResult = dataSample
+    searchResult = dataSample.slice(0,4)
 
 useEffect(()=> {
     setTimeout(()=> {
@@ -66,13 +66,15 @@ useEffect(()=> {
             <div className='resultList' key='resultList'>
                 {
                     searchResult.map((object) => {
+                        let imageURL = `https://www.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
+                        console.log(imageURL)
                         return (
                             <ImageResult 
-                                key={object.objectID}
-                                objectID={object.objectID}
+                                key={object.id}
+                                objectID={object.id}
                                 name={object.title}
                                 URL={
-                                    // object.primaryImage || 
+                                    imageURL || 
                                     "/src/assets/noImg.jpeg"}
                                 updateSavedFavorites={updateSavedFavorites}
                                 savedFavorites={savedFavorites}
