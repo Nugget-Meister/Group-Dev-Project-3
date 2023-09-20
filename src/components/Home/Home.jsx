@@ -49,6 +49,9 @@ const Home = ({updateSearchResult}) => {
     const concatLink = `${text}${department1?`~${department1}`:''}${department2?`~${department2}`:''}${department3?`~${department3}`:''}`
     console.log(concatLink)
     searchRequest_Chicago(query)
+    .then(res => {
+        console.log(res)
+    })
 
     // searchRequest(query)
     // .then(res => updateSearchResult(res))

@@ -54,13 +54,29 @@ const getObjects = (objectID) => {
 
 }
 
-const searchRequest_Chicago = (query) => {
+const searchRequest_Chicago = ({text, department1, department2, department3}) => {
+
     const buildURL = (text, department) => {
        let base_url = 'https://api.artic.edu/api/v1/artworks/search?q='
        let dep_key = '&query[term][department_id]='
         return `${base_url}${text}${dep_key}${department}`
     }
-    console.log(buildURL(query.text, query.department1))
+
+    let promises = []
+
+    if(department1 != ''){
+        promises.push(fetch(buildURL(text, department1)).then(res => res.json(), []).then(json => json.data))
+    }
+    if(department2 != ''){
+        console.log(department2)
+    //     promises.push(fetch(`${API_URL}${query.text}${query.department2}`).then(res => res.json(), []).then(json => json.objectIDs))
+    }
+    if(department3 != ''){
+    //     promises.push(fetch(`${API_URL}${query.text}${query.department3}`).then(res => res.json(), []).then(json => json.objectIDs))
+    }
+
+   return Promise.all(promises)
+        .then((res) => res.flat())
 }
 
 export {
