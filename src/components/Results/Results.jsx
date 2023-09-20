@@ -12,12 +12,14 @@ const Results = ({
         updateSavedFavorites,
         handleFavorite
     }) => {
+        searchResult = dataSample.slice()
 
-    // const [selected, updateSelected] = useState([])
-    const [loopNum, updateloopNum] = useState(0)
-    const [errorMessage, updateError] = useState(<div>Searching</div>)
-
-    searchResult = dataSample.slice(0,4)
+        const [loopNum, updateloopNum] = useState(0)
+        const [errorMessage, updateError] = useState(<div>Searching</div>)
+        
+        const [selected, updateSelected] = useState(
+            searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
+        )
 
 useEffect(()=> {
     setTimeout(()=> {
@@ -31,6 +33,12 @@ useEffect(()=> {
         }
     }, 3000)    
 },[])
+
+useEffect(()=> {
+    updateSelected(
+        searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
+    )
+},[loopNum])
     
 
     // useEffect (() => {
@@ -58,16 +66,16 @@ useEffect(()=> {
     //     }, 1000)
     // } ,[loopNum])
 
-    
+    console.log(searchResult.length, loopNum)
 
     return (
         <div className='Results' key="results">
             {searchResult.length != 0 ? 
             <div className='resultList' key='resultList'>
                 {
-                    searchResult.map((object) => {
+                    selected.map((object) => {
                         let imageURL = `https://www.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
-                        console.log(imageURL)
+                        // console.log(imageURL)
                         return (
                             <ImageResult 
                                 key={object.id}
@@ -86,15 +94,19 @@ useEffect(()=> {
                 
             </div>
             : errorMessage}
-            {/* {selected.length != 0 ?
+            {selected.length != 0 ?
             <button onClick={()=> {
-                updateSelected([])
-                if(loopNum >= searchResult.length){
+                updateloopNum(loopNum+1)
+                .then(() => {
+                    updateSelected(searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum))))
+                })
+                
+                if(loopNum >= (searchResult.length / 4)){
                     updateloopNum(0)
                     updateError(<div>Searching</div>)
                 }
                 }}>Next Set</button>
-                 : ''} */}
+                 : ''}
         </div>
     );
 }

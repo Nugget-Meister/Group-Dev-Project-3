@@ -21,6 +21,7 @@ const ImageResult = ({
                     variant='top' 
                     src={URL || '/src/assets/noImg.jpeg'}
                     alt={`Object ${objectID}`}
+                    onError={(e) => console.log(e.target.src="/src/assets/noImg.jpeg")}
                 />
             </Link>
             <Card.Body>
