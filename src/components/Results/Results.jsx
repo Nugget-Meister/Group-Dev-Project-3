@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ImageResult from '../common/ImageResult';
 import {Link} from 'react-router-dom'
 import { getObjects } from '../common/apicalls';
-import dummyinfo from '../common/dummyinfo';
+import { dataSample } from '../common/chicagoMuseum/dummyResponse';
+
 import '../Results/Results.css'
 
 const Results = ({
@@ -11,15 +12,23 @@ const Results = ({
         updateSavedFavorites,
         handleFavorite
     }) => {
+       
 
-    const [selected, updateSelected] = useState([...dummyinfo.dummy])
+
+    // Toggle dummy data here   
+    searchResult = dataSample
+
+
     const [loopNum, updateloopNum] = useState(0)
     const [errorMessage, updateError] = useState(<div>Searching</div>)
+    
+    const [selected, updateSelected] = useState(
+        searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
+    )
 
-        // console.log(dummyinfo)
-
+useEffect(()=> {
     setTimeout(()=> {
-        if(selected.length < 1) {
+        if(searchResult.length < 1) {
             updateError(
                 <div className='error'>
                     <h1>An error has occured.</h1>
@@ -28,6 +37,14 @@ const Results = ({
                 )
         }
     }, 3000)    
+},[])
+
+useEffect(()=> {
+    updateSelected(
+        searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum)))
+    )
+},[loopNum])
+    
 
     // useEffect (() => {
     //     setTimeout(() => {
@@ -51,42 +68,46 @@ const Results = ({
     //                 })
     //             }
     //         }
-            
-
     //     }, 1000)
     // } ,[loopNum])
 
-    
+    // console.log(searchResult.length, loopNum, loopNum >= (searchResult.length / 4))
 
     return (
         <div className='Results' key="results">
-            {selected.length != 0 ? 
+            {searchResult.length != 0 ? 
             <div className='resultList' key='resultList'>
-                {selected.map((object) => {
-                return (
-                        <ImageResult 
-                            key={object.objectID}
-                            objectID={object.objectID}
-                            name={object.title}
-                            URL={
-                                // object.primaryImage || 
-                                "/src/assets/noImg.jpeg"}
-                            updateSavedFavorites={updateSavedFavorites}
-                            savedFavorites={savedFavorites}
-                            handleFavorite={handleFavorite}
-                        />
-                )
-            })}
-            
+                {
+                    selected.map((object) => {
+                        let imageURL = `https://www.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
+                        // console.log(imageURL)
+                        return (
+                            <ImageResult 
+                                key={object.id}
+                                objectID={object.id}
+                                name={object.title}
+                                URL={
+                                    imageURL || 
+                                    "/src/assets/noImg.jpeg"}
+                                updateSavedFavorites={updateSavedFavorites}
+                                savedFavorites={savedFavorites}
+                                handleFavorite={handleFavorite}
+                                object={object}
+                            />
+                        )
+                    })
+                }
+                
             </div>
             : errorMessage}
             {selected.length != 0 ?
             <button onClick={()=> {
-                updateSelected([])
-                if(loopNum >= searchResult.length){
+                if(loopNum+1 >= (searchResult.length / 4)){
                     updateloopNum(0)
-                    updateError(<div>Searching</div>)
+                } else { 
+                    updateloopNum((loopNum+1))
                 }
+                
                 }}>Next Set</button>
                  : ''}
         </div>

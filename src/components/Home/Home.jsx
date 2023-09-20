@@ -1,27 +1,31 @@
 
 import { useState } from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/src/assets/vite.svg";
 
+import { 
+    searchRequest,
+    searchRequest_Chicago 
+    } from "../common/apicalls";
 
-import { departments } from "../common/departmentlist";
-import { searchRequest } from "../common/apicalls";
 import { useNavigate } from "react-router";
 import {Link} from "react-router-dom"
 
+import { departments } from "../common/departmentlist";
+import { chicagoMuseumDepartments } from "../common/chicagoMuseum/departmentlist";
 
 const Home = ({updateSearchResult}) => {
+    
+    const navigate = useNavigate()
+    
+    // Data Structures
+    const newQuery = {
+        text: "",
+        department1: '',
+        department2: '',
+        department3: ''
+    }
 
     
-  const [query, setQuery] = useState({
-      text: "",
-      department1: '',
-      department2: '',
-      department3: ''
-  });
-
-  const navigate = useNavigate()
-
+    const [query, setQuery] = useState(newQuery);
 
   // Handles the number of categories on screen
   const [categoryNum, setCategoryNum] = useState(1)
@@ -38,7 +42,30 @@ const Home = ({updateSearchResult}) => {
 
   };
 
+
+  const handleSubmit_Chicago = (e) => {
+    e.preventDefault()
+    const {text,department1,department2,department3} = {...query}
+    const concatLink = `${text}${department1?`~${department1}`:''}${department2?`~${department2}`:''}${department3?`~${department3}`:''}`
+    
+    // Request and Navigate here
+    searchRequest_Chicago(query)
+    .then(res => {
+        updateSearchResult(res)
+    })
+    .then(() => navigate(`/search/${concatLink}`))
+
+
+    // navigate(`/search/${concatLink}`)
+
+
+
+
+  }
+ 
+
   const resetForm = () => {
+    setQuery(newQuery)
     setCategoryNum(1)
     
   }
@@ -49,43 +76,6 @@ const Home = ({updateSearchResult}) => {
   };
 
  
-
-  const handleCategories = (amount) => {
-
-    const newCategory = (num) => {
-        return (
-            <div key={`divdepartment${num}`} >
-                <select required 
-                    key={`department${num}`} 
-                    id={`department${num}`}
-                    value={query[`department${num}`]}
-                    onChange={setChanged}
-                    >
-                    <option key={`0-${num}`} value="">-None-</option>
-                    {
-                        departments.map((department) => {
-                            return (
-                                <option 
-                                    value={department.departmentId}
-                                    key={department.departmentId}
-                                    >{department.displayName}</option>)
-                        }
-                    )}
-                    
-                </select>
-            </div>
-        );
-      };
-
-
-    const categories = []
-    for (let i = 1; i <= amount; i++) {
-        categories.push(newCategory(i))
-    }
-
-    return categories
-
-  }
 
 
   const updateCategoryNum = (num) => {
@@ -100,10 +90,91 @@ const Home = ({updateSearchResult}) => {
     }
   }
 
+
+const handleCategories = (amount) => {
+
+const newCategory = (num) => {
+    return (
+        <div key={`divdepartment${num}`} >
+            <select required 
+                key={`department${num}`} 
+                id={`department${num}`}
+                value={query[`department${num}`]}
+                onChange={setChanged}
+                >
+                <option key={`0-${num}`} value="">-None-</option>
+                {
+                    departments.map((department) => {
+                        return (
+                            <option 
+                                value={department.departmentId}
+                                key={department.departmentId}
+                                >{department.displayName}</option>)
+                    }
+                )}
+                
+            </select>
+        </div>
+    );
+    };
+
+
+const categories = []
+for (let i = 1; i <= amount; i++) {
+    categories.push(newCategory(i))
+}
+
+return categories
+
+}
+
+
+const handleCategories_Chicago = (amount) => {
+    const newCategory = (num) => {
+        return (
+            <div key={`divdepartment${num}`} >
+                <select required 
+                    key={`department${num}`} 
+                    id={`department${num}`}
+                    value={query[`department${num}`]}
+                    onChange={setChanged}
+                    >
+                    <option key={`0-${num}`} value="">-None-</option>
+                    {
+                        chicagoMuseumDepartments.data.map((department) => {
+                            return (
+                                <option 
+                                    value={department.id}
+                                    key={department.id}
+                                    >{department.title}</option>
+                                    )
+                        })
+                    }
+                    
+                </select>
+            </div>
+        );
+      };
+
+
+    const categories = []
+    for (let i = 1; i <= amount; i++) {
+        categories.push(newCategory(i))
+    }
+
+    return categories
+
+}
+
+
+
+
+
+
   
   return (
     <div id="home">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit_Chicago}>
         <input 
             type="text" 
             id="text" 
@@ -111,7 +182,7 @@ const Home = ({updateSearchResult}) => {
             value={query.text} 
             onChange={setChanged} />
         <br />
-        {handleCategories(categoryNum)}
+        {handleCategories_Chicago(categoryNum)}
         {categoryNum < 3 ? <button type="button" onClick={() => updateCategoryNum(categoryNum+1)}>+</button>: null}
         {categoryNum > 1 ? <button type="button" onClick={() => updateCategoryNum(categoryNum-1)}>-</button>: null}
         <br />
