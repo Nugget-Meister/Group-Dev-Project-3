@@ -21,16 +21,22 @@ function App() {
   const [searchResult, updateSearchResult] = useState([])
   const [savedFavorites, updateSavedFavorites] = useState({})
   
-  const handleFavorite = (id) => {
-    console.log("favorites:",savedFavorites.id)
-    if(savedFavorites[id]){
+  const handleFavorite = (object) => {
+    console.log("favorites:",savedFavorites[object.id])
+    // console.log(object.id)
+
+    if(savedFavorites[object.id]){
       console.log("toggle")
-      updateSavedFavorites({...savedFavorites, [id]: !savedFavorites[id]})
+      updateSavedFavorites({...savedFavorites, [object.id]: !savedFavorites[object]})
     } 
     else {
       console.log("add")
-      updateSavedFavorites({...savedFavorites, [id]: true})
+      updateSavedFavorites({...savedFavorites, [object.id]: object})
     }
+
+    console.log(savedFavorites)
+    
+  
   };
 
   // useEffect(()=> {

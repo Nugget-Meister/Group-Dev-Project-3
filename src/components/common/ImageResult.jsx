@@ -10,7 +10,8 @@ const ImageResult = ({
         URL,
         handleFavorite,
         savedFavorites,
-        name
+        name,
+        object
     }) => {
 
 
@@ -26,7 +27,7 @@ const ImageResult = ({
             </Link>
             <Card.Body>
                 <Card.Text>{name}</Card.Text>
-                <Button onClick={() => {handleFavorite(objectID)}}>{savedFavorites[objectID]? `Remove Favorite`: `Add Favorite`}</Button>
+                <Button onClick={() => {handleFavorite(object)}}>{savedFavorites[objectID]? `Remove Favorite`: `Add Favorite`}</Button>
             </Card.Body>
         </Card>
 

@@ -49,14 +49,14 @@ const Home = ({updateSearchResult}) => {
     const concatLink = `${text}${department1?`~${department1}`:''}${department2?`~${department2}`:''}${department3?`~${department3}`:''}`
     
     // Request and Navigate here
-    // searchRequest_Chicago(query)
-    // .then(res => {
-    //     updateSearchResult(res)
-    // })
-    // .then(() => navigate(`/search/${concatLink}`))
+    searchRequest_Chicago(query)
+    .then(res => {
+        updateSearchResult(res)
+    })
+    .then(() => navigate(`/search/${concatLink}`))
 
 
-    navigate(`/search/${concatLink}`)
+    // navigate(`/search/${concatLink}`)
 
 
 

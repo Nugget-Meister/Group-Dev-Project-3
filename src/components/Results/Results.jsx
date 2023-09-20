@@ -66,7 +66,7 @@ useEffect(()=> {
     //     }, 1000)
     // } ,[loopNum])
 
-    console.log(searchResult.length, loopNum, loopNum >= (searchResult.length / 4))
+    // console.log(searchResult.length, loopNum, loopNum >= (searchResult.length / 4))
 
     return (
         <div className='Results' key="results">
@@ -87,6 +87,7 @@ useEffect(()=> {
                                 updateSavedFavorites={updateSavedFavorites}
                                 savedFavorites={savedFavorites}
                                 handleFavorite={handleFavorite}
+                                object={object}
                             />
                         )
                     })
@@ -98,14 +99,8 @@ useEffect(()=> {
             <button onClick={()=> {
                 if(loopNum+1 >= (searchResult.length / 4)){
                     updateloopNum(0)
-                    .then(() => {
-                        updateSelected(searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum))))
-                    })
                 } else { 
-                    updateloopNum(loopNum+1)
-                    .then(() => {
-                        updateSelected(searchResult.slice((0 + (4 * loopNum)), (4 + (4 * loopNum))))
-                    })
+                    updateloopNum((loopNum+1))
                 }
                 
                 }}>Next Set</button>
