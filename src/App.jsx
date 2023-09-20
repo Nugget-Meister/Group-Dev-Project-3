@@ -25,23 +25,20 @@ function App() {
     console.log("favorites:",savedFavorites[object.id])
     // console.log(object.id)
 
-    if(savedFavorites[object.id]){
+    if(savedFavorites[object.id] == object){
       console.log("toggle")
-      updateSavedFavorites({...savedFavorites, [object.id]: !savedFavorites[object]})
+      updateSavedFavorites({...savedFavorites, [object.id]: false})
     } 
     else {
       console.log("add")
       updateSavedFavorites({...savedFavorites, [object.id]: object})
-    }
-
-    console.log(savedFavorites)
-    
+    }    
   
   };
 
-  // useEffect(()=> {
-  //   console.log(savedFavorites,)
-  // }, [savedFavorites])
+  useEffect(()=> {
+    console.log(savedFavorites)
+  }, [savedFavorites])
 
 
   return (
