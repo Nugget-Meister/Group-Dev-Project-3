@@ -1,4 +1,6 @@
 Museum Mate is a mobile applicaiton designed to assist visitors in viewing and drawing inspiration from the Chicago Museum's database pf paintings. A user-friendly interface with a range of features, Museum Mate aims to enhance the experience by providing valuable information guiding through the vast collection. 
+[Trello Board](https://trello.com/b/0jrKIkPH/final-project-mod-3)
+[Wireframes](https://www.figma.com/file/gev57TlVimhNuM17QkrEZX/Mobile%2FDesktop-Design?type=design&node-id=0%3A1&mode=design&t=lcJUHOthFdIEyy83-1)
 
 # How to Use
 
